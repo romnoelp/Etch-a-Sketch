@@ -1,42 +1,27 @@
 const gridContainer = document.querySelector(".grid-container");
-let newValue = 0;
-let row1 = ["1", "2", "3", "4"];
-let row2 = ["5", "6", "7", "8"];
-let row3 = ["9", "10", "11", "12"];
-let row4 = ["13", "14", "15", "16"];
+let gridCount = 16;
 
-row1.forEach(function (element) {
-  const div = document.createElement("div");
-  div.classList.add("grid");
-  div.innerHTML = element;
-  gridContainer.appendChild(div);
-});
+// Rendering the grid container
+const gridRenderer = (newGridCount) => {
+  for (let index = 1; index <= newGridCount; index++) {
+    const div = document.createElement("div");
+    div.classList.add("grid");
+    gridContainer.appendChild(div);
+  }
+};
 
-row2.forEach(function (element) {
-  const div = document.createElement("div");
-  div.classList.add("grid");
-  div.innerHTML = element;
-  gridContainer.appendChild(div);
-});
+gridRenderer(gridCount);
 
-row3.forEach(function (element) {
-  const div = document.createElement("div");
-  div.classList.add("grid");
-  div.innerHTML = element;
-  gridContainer.appendChild(div);
-});
-
-row4.forEach(function (element) {
-  const div = document.createElement("div");
-  div.classList.add("grid");
-  div.innerHTML = element;
-  gridContainer.appendChild(div);
-});
-
+// Logic for changing the number of grids
 const changeValueButton = document.querySelector(".header .change-grid");
-console.log(changeValueButton);
 
 changeValueButton.addEventListener("click", function (element) {
-  newValue = prompt("Give me the new value for the grid");
-  console.log(newValue);
+  newGridCount = prompt("Give me the new value for the grid");
+  if (newGridCount <= 64) {
+    gridRenderer(newGridCount);
+  }
+  else  {
+    alert("I'm sorry, can't put more thant 64 grids inside the grid.");
+    gridRenderer(gridCount);
+  }
 });
